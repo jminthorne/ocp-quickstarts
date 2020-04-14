@@ -33,6 +33,17 @@ ENV ANDROID_SDK_ROOT=/opt/android-clt-linux/tools/bin
 
 COPY /licenses /opt/android-clt-linux/tools/bin/licenses
 
+USER root
+
+RUN curl https://raw.githubusercontent.com/cloudrouter/centos-repo/master/CentOS-Base.repo -o /etc/yum.repos.d/CentOS-Base.repo && \
+    curl http://mirror.centos.org/centos-7/7/os/x86_64/RPM-GPG-KEY-CentOS-7 -o /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 && \
+    INSTALL_PKGS="java-1.8.0-openjdk-devel" && \
+    DISABLES="--disablerepo=rhel-server-extras --disablerepo=rhel-server --disablerepo=rhel-fast-datapath --disablerepo=rhel-server-optional --disablerepo=rhel-server-ose --disablerepo=rhel-server-rhscl" && \
+    yum $DISABLES install -y --setopt=tsflags=nodocs --disableplugin=subscription-manager epel-release && \
+    yum $DISABLES install -y --setopt=tsflags=nodocs --disableplugin=subscription-manager $INSTALL_PKGS && \
+    rpm -V  $INSTALL_PKGS && \
+    yum clean all
+
 ## Install Android SDK, auto-accepting terms of service
 ## RUN ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | /opt/android-clt-linux/tools/bin/sdkmanager --update platform-tools,android-28,build-tools-28.0.3,android-28,build-tools-28.0.3,tools,extra-android-support,extra-android-m2repository
 
