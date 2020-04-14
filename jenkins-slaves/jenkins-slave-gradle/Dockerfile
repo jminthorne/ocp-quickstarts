@@ -28,7 +28,9 @@ RUN curl -skL -o /tmp/android-clt.zip https://dl.google.com/android/repository/c
     rm -f /tmp/android-clt.zip && \
     chown -R 1001:0 /opt/android-clt
 
-ENV ANDROID_SDK_ROOT=/opt/android-clt-linux/tools/bin 
+ENV ANDROID_SDK_ROOT=/opt/android-clt-linux/tools/bin
+
+COPY /licenses /opt/android-clt-linux/tools/bin/licenses
 
 ## Install Android SDK, auto-accepting terms of service
 ## RUN ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | /opt/android-clt-linux/tools/bin/sdkmanager --update platform-tools,android-28,build-tools-28.0.3,android-28,build-tools-28.0.3,tools,extra-android-support,extra-android-m2repository
