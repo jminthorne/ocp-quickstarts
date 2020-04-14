@@ -5,7 +5,7 @@ metadata:
   name: "${NAME}"
   annotations:
     openshift.io/display-name: Generic Build Pod
-    description: "${NAME} build pod template pre-configured to use a jenkins slave in the
+    description: "${NAME} build pod template pre-configured to use a Jenkins slave in the
       same project/namespace"
 objects:
 - apiVersion: v1
@@ -57,7 +57,7 @@ parameters:
   displayName: Git Repository URL
   description: The URL of the repository with your application source code.
   required: true
-  value: https://github.com/redhat-cop/containers-quickstarts
+  value: https://gitlab.com/axcelinno/openshift-container-quickstarts
 - name: SOURCE_REPOSITORY_REF
   displayName: Git Reference
   description: Set this to a branch name, tag or other ref of your repository if you
