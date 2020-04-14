@@ -26,7 +26,8 @@ RUN curl -skL -o /tmp/android-clt.zip https://dl.google.com/android/repository/c
     mkdir -p  /opt/android-clt && \
     unzip /tmp/android-clt.zip -d /opt/android-clt-linux && \
     rm -f /tmp/android-clt.zip && \
-    chown -R 1001:0 /opt/android-clt
+    chown -R 1001:0 /opt/android-clt-linux && \
+    chmod -R g+rw /opt/android-clt-linux
 
 ENV ANDROID_SDK_ROOT=/opt/android-clt-linux/tools/bin
 
